@@ -101,11 +101,12 @@ Results will be reported here as a table once measured, with the question set co
 ## Tech stack (target)
 
 - **API:** FastAPI, Pydantic
-- **Agent and LLMs:** tool-calling LLM agent; OpenAI GPT and AWS Bedrock models behind a provider interface
+- **Agent and LLMs:** tool-calling LLM agent; OpenAI GPT, Azure OpenAI, and AWS Bedrock models behind a provider interface
 - **Retrieval:** Sentence-T5 embeddings + FAISS (reused from my [PDF Intelligence project](https://github.com/afzengin/PDF-RAG)); a multimodal ColPali/Qdrant backend is a later upgrade
 - **Structured data:** DuckDB with a synthetic pharmaceutical sales and inventory dataset
 - **External data:** [openFDA](https://open.fda.gov/apis/) drug enforcement (recalls), shortages, and labeling endpoints
-- **Packaging and deployment:** Docker; AWS deployment (*planned*)
+- **Forecasting:** product-level demand forecasting with backtested accuracy (*planned*)
+- **Packaging and deployment:** Docker; Azure Container Apps (*planned*)
 - **Observability:** structured logging and a metrics endpoint
 
 ---
@@ -143,10 +144,11 @@ llm-data-agent-api/
 - [ ] `sql_query` tool with read-only guardrails
 - [ ] `drug_lookup` tool calling openFDA (recalls, shortages) with retries and caching
 - [ ] Tool-routing agent with citations in every response, including multi-tool questions
+- [ ] `forecast_demand` tool: product-level demand forecasts and stock-out risk flags, combined with openFDA shortage data
 - [ ] Evaluation set (30-50 questions) and `run_eval.py`
 - [ ] `/metrics` endpoint: latency, cost, routing stats
 - [ ] Dockerfile and local run instructions
-- [ ] AWS deployment
+- [ ] Cloud deployment on Azure (Azure Container Apps), with Azure OpenAI as an optional model provider
 - [ ] Publish measured evaluation results
 
 ---
